@@ -1,12 +1,15 @@
-## the makeCacheMatrix() function gets matix
-## and then saved inverse of this matrix in cache
+## `makeCacheMatrix`: This function creates a special "matrix" object
+## that can cache its inverse.
 
 	makeCacheMatrix <- function(x = matrix()){
 	## declare an empty variable "inverse"
 		inverse <- NULL
 
-	## Create a functions set, get, setinverse and getinverse  
-	## set is sets a matrix x
+	## Create a functions set, get, setinverse and getinverse 
+
+	## the set is uses a superassignment operator `<<-` operator 
+	## which can be used to assign a value to an object
+	## in an environment that is different from the current environment. 
 		set <- function(y) {
 			x <<- y
 			inverse <<- NULL
