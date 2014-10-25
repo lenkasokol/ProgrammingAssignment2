@@ -1,24 +1,29 @@
-makeCacheMatrix <- function(x = matrix()){
-	inverse <- NULL
-	set <- function(y) {
+## the makeCacheMatrix() function gets matix
+## and then saved inverse of this matrix in cache
+
+	makeCacheMatrix <- function(x = matrix()){
+	## declare an empty variable "inverse"
+		inverse <- NULL
+
+	## Create a functions set, get, setinverse and getinverse  
+	## set is sets a matrix x
+		set <- function(y) {
 			x <<- y
 			inverse <<- NULL
-	}
+		}
 	
-	get <- function() x
-	setinverse <- function(solve) inverse <<- solve
-	getinverse <- function() inverse
+	## get function, gets matrix
+		get <- function() x 
 
-	list(set = set, get = get, setinverse = setinverse, getinverse=getinverse)
+	## setinverse function, inverse the matrix x, using
+	## library function "solve", that actually doing inversion
+		setinverse <- function(solve) inverse <<- solve
+
+	## getinverse function returns inversed matrix
+		getinverse <- function() inverse
+
+	## list contains all function above in the list, 
+	## so, when function called, first the makeCacheMatrix checks, 
+	## if function exist, by looking at the "list" collection
+		list(set = set, get = get, setinverse = setinverse, getinverse=getinverse)
 }
-
-########################### working code ##########
-## 1. amatrix = makeCacheMatrix(matrix(c(1,2,3,4), nrow=2, ncol=2))
-## 2. amatrix$get()
-## 3. cacheSolve(amatrix) ##Computes, caches, and returns    matrix inverse
-## 4. amatrix$getinverse()  # Returns matrix inverse
-## 5. cacheSolve(amatrix)   # Returns cached matrix inverse using previously computed matrix inverse
-## 6. amatrix$set(matrix(c(0,5,99,66), nrow=2, ncol=2)) # Modify existing matrix
-## 7. cacheSolve(amatrix)   # Computes, caches, and returns new matrix inverse
-## 8. amatrix$get()         # Returns matrix
-## 9. amatrix$getinverse()  # Returns matrix inverse
